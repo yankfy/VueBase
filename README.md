@@ -23,3 +23,12 @@ Vue基础巩固
 - [15、Vue的Component组件2：Props属性设置](example/15vue.component2.html)
 - [16、Vue的Component组件3：父子组件关系](example/16vue.component3.html)
 - [17、Vue的Component组件4：Component的标签](example/17vue.component4.html)
+
+## Vue2.0全局API实例
+> 简单来说就是在Vue构造器里的配置功能的前缀
+- [18、propsData全局扩展的数据传递](example/18vue.propsData.html)
+- [19、computed计算选项](example/19vue.computed.htmll)
+- [20、methods方法选项](example/20vue.methods.html)
+- [21、watch监控数据](example/21vue.watch.html)
+- [22、mixins混入选项](example/22vue.mixins.html)
+- [23、extends扩展选项](example/23vue.extends.html)
