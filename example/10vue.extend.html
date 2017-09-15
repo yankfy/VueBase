@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.extend拓展实例构造器</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>vue.extend扩展实例构造器</h1>
+    <hr>
+    <author></author>
+    <div id="author"></div>
+    <div class="author"></div>
+    <script>
+        // 所有的扩展器都需要一个另外的操作
+        var authorExtend = Vue.extend({
+            template:"<p><a :href='authorLink'>{{authorName}}</a></p>",
+            data:function(){
+                return {
+                    authorName:"Pony",
+                    authorLink:"https://51cco.cn"
+                }
+            }
+        })
+
+        // 将扩展绑定到页面Dom上
+        new authorExtend().$mount('author'); //引号可以是任何选择器
+        new authorExtend().$mount('.author'); //引号可以是任何选择器
+        new authorExtend().$mount('#author'); //引号可以是任何选择器
+    </script>
+</body>
+
+</html>

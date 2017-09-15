@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind实例</title>
+    <script src="../assets/js/vue.js"></script>
+    <style>
+        .classA{
+            color: red;
+        }
+        .classB{
+            color: green;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>v-bind绑定标签属性实例</h1>
+    <hr>
+    <div id="app">
+        <h3>绑定属性</h3>
+        <a :href="url">
+            <img v-bind:src="imgSrc" width="200">
+            <p>v-bind的缩写用法 ：</p>
+        </a>
+        <hr>
+        <h3>绑定元素Class</h3>
+        <p :class="className">1、绑定Class</p>
+        <p :class="{classA:isOk}">2、绑定class中的判断</p>
+        <div>
+            <input type="checkbox" id="isOk" v-model="isOk">
+            <label for="isOk">isOk:{{isOk}}</label>
+        </div>
+        <p :class="[classA,classB]">同时引用两个class</p>
+        <p :class="isOk?classA:classB">三元运算符运用class,三元运算符没有{}</p>
+        <h3>绑定元素style</h3>
+        <p :style="{color:red,fontSize:font}">绑定行内样式需要{}，属性必须小驼峰命名法</p>
+        <p :style="styleObject">绑定行内元素的对象样式</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello World!",
+                imgSrc: "http://www.51cco.cn/881d714fgw1f8oeyplatyj21yb1yb7wh.jpg",
+                url:'https://www.baidu.com',
+                className:'classA',
+                isOk:false,
+                classA:"classA",
+                classB:"classB",
+                red:'red',
+                font:"20px",
+                styleObject:{
+                    fontSize:'40px',
+                    color:'yellow'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

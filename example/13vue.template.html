@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的template制作</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的template制作</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- 2、第二种模板方式 -->
+    <template id="dd2">
+        <!-- 必须是HTMl，不可使纯文字 -->
+        <h2 style="color: red">我是第二种template标签模板</h2>
+    </template>
+
+    <!-- 3、第三种模板方式 -->
+    <script type="x-template" id="dd3">
+        <!-- 可以利用src模式实现更为简洁的模板引入 -->
+        <h2 style="color:green">我是第三种template标签模板</h2>
+    </script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello World!"
+            },
+            // 1、第一种模板方式
+            // template:`
+            //     <h2 style='color:blue'>我是第一种template模板</h2>
+            // `
+            // 2、第二种模板方式
+            // template:'#dd2'
+            // 3、第三种模板方式
+            template:'#dd3'
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-pre&v-cloak&v-once实例</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-pre&v-cloak&v-once实例</h1>
+    <hr>
+    <div id="app">
+        <h3>v-pre指令表示不进行渲染直接原样输出</h3>
+        <div v-pre>{{message}}</div>
+        <h3>v-cloak指令渲染完成后才显示</h3>
+        <div v-cloak>渲染完成后才显示</div>
+        <h3>v-once指令表示只在初始进行渲染，其他情况不跟着变化</h3>
+        <p v-text="message"></p>
+        <input type="text" v-model="message">
+        <p v-text="message" v-once></p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello World!"
+            }
+        })
+    </script>
+</body>
+
+</html>

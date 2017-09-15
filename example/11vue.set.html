@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.set全局操作</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.set全局操作</h1>
+    <p style="color: red"></p>
+    <hr>
+    <div id="app">
+        <p>{{count}}</p>
+        <button @click="add">增加count</button>
+        <ul><li v-for="item in arr">{{item}}</li></ul>
+    </div>
+    <p>
+        <button onclick="add()">增加count</button>
+    </p>
+    <script>
+        var outData = {
+            count: 1,
+            goods: 'car',
+            arr:['aaa','bbb']
+        }
+        // 三种方式增加
+        function add(){
+            Vue.set(outData,'count',2);
+            // app.count++;
+            // outData.count++;
+
+            // app.arr[1]='ccc';
+            // 不进行DOM操作时,利用数组下标更改数据或者长度是不起作用的
+            Vue.set(app.arr,1,'ccc');
+
+        }
+        var app = new Vue({
+            el: '#app',
+            data: outData,
+            methods: {
+                add:function(){
+
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

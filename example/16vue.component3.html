@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的Component组件3</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的Component组件3：父子组件关系</h1>
+    <hr>
+    <div id="app">
+        <!-- 绑定方式传递属性用v-bind属性来传递属性 -->
+        <panda from="China" from-here="SiChuan"></panda>
+    </div>
+
+    <script>
+        // 2、父子组件关系【子组件】
+        var cityComponent = {
+            template: `<h4 style="color:blue">我是构造器外部的子组件</h4>`
+        }
+        // 1、构造器外部组件【父组件】
+        var pandaComponent = {
+            template: `
+                <div>
+                    <h2 style="color:red">我是构造器外部的父组件</h2>
+                    <city></city>
+                </div>
+            `,
+            components:{
+                "city":cityComponent
+            }
+        }
+        
+        var app = new Vue({
+            el: '#app',
+            // 定义局部组件
+            components: {
+                "panda": pandaComponent
+            }
+        })
+    </script>
+</body>
+
+</html>

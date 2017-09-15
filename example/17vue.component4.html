@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的Component组件4</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的Component组件4：Component标签</h1>
+    <hr>
+    <div id="app">
+        <component v-bind:is="who" :here="who"></component>
+        <button @click="change">现在是{{who}}</button>
+    </div>
+
+    <script>
+        // 1、template模板中出现自定义组件的话必须用其他HTML原生标签包住，直接暴露会出现错误
+        // 2、component标签是Vue自带，其中用v-bind绑定的is属性等于哪个组件名其内容是哪个组件
+
+        var componentA = {
+            props: ['here'],
+            template: `
+                <div>
+                    <h2 style="color:red">{{here}}：A组件</h2>
+                </div>
+            `,
+        }
+        var componentB = {
+            props: ['here'],
+            template: `
+                <div>
+                    <aa :here="here"></aa>
+                    <h2 style="color:yellow">{{here}}：B组件</h2>
+                </div>
+            `,
+            components: {
+                "aa": componentA,
+                props:['here']
+            }
+        }
+        var componentC = {
+            props: ['here'],
+            template: `
+                <div>
+                    <bb :here="here"></bb>
+                    <h2 style="color:blue">{{here}}：C组件</h2>
+                </div>
+            `,
+            components: {
+                "bb": componentB,
+                props:['here']
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                "who": "componentC"
+            },
+            components: {
+                "componentA": componentA,
+                "componentB": componentB,
+                "componentC": componentC
+            },
+            methods: {
+                change: function () {
+                    switch (this.who) {
+                        case "componentA":
+                            this.who = "componentB"
+                            break;
+                        case "componentB":
+                            this.who = "componentC"
+                            break;
+                        case "componentC":
+                            this.who = "componentA"
+                            break;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

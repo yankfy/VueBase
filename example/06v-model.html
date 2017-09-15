@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model实例</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-model数据源绑定实例</h1>
+    <hr>
+    <div id="app">
+        <p>原始文本信息{{message}}</p>
+        <h3>文本框</h3>
+        <!--
+            1.双向数据绑定修饰符
+            lazy修饰符失去焦点才会变
+            number修饰符表示必须是数字
+            trim修饰符表示去除两边的空格
+        -->
+        <p>v-model<input type="text" v-model="message"></p>
+        <p>v-model.lazy<input type="text" v-model.lazy="message"></p>
+        <p>v-model.number<input type="text" v-model.number="message"></p>
+        <p>v-model.trim<input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>文本域</h3>
+        <textarea v-model="message" id="" cols="30" rows="10"></textarea>
+        <hr>
+        <h3>多选框绑定一个值</h3>
+        <!--
+            1.v-model为true显示勾选
+        -->
+        <input type="checkbox" id="isTrue" v-model="isTrue">
+        <label for="isTrue">{{isTrue}}</label>
+        <hr>
+        <h3>多选框绑定数组</h3>
+        <div>
+            <input type="checkbox" id="js" value="js" v-model="webNames">
+            <label for="js">js</label>
+            <input type="checkbox" id="css" value="css" v-model="webNames">
+            <label for="js">css</label>
+            <input type="checkbox" id="html" value="html" v-model="webNames">
+            <label for="js">html</label>
+            <p>{{webNames}}</p>
+            <!-- webNames为选中的结果 -->
+        </div>
+        <hr>
+        <h3>单选框的绑定</h3>
+        <input type="radio" id="one" value="man" v-model="sex">
+        <label for="one">男</label>
+        <input type="radio" id="two" value="woman" v-model="sex">
+        <label for="two">女</label>
+        <p>您选择的性别是{{sex}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "helloworld",
+                isTrue: true,
+                webNames:[],
+                sex:'man'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的Component组件1</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的Component组件1：定义全局组件</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+        <pony></pony>
+        <panda></panda>
+    </div>
+    <!-- 全局组件显示 -->
+    <div id="bpp">
+        <pony></pony>
+        <!-- panda组件为局部，此处不显示 -->
+        <panda></panda>
+    </div>
+
+    <script>
+        // 1、定义全局组件
+        Vue.component('pony',{
+            template:`<h2 style="color:blue">我是全局的Pony组件</h2>`
+        })
+            
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello World!"
+            },
+            // 2、定义局部组件
+            components: {
+                "panda":{
+                    template:`<h2 style="color:green">我是局部的Panda组件</h2>`
+                }
+            }
+        })
+        var bpp = new Vue({
+            el: '#bpp'
+        })
+    </script>
+</body>
+
+</html>
