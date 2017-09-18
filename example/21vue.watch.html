@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch监控数据选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>watch监控数据选项</h1>
+    <hr>
+    <div id="app">
+        <p>今日温度：{{weather}}°C</p>
+        <p>适宜穿：{{wear}}</p>
+        <button @click="add">升高温度</button>
+        <button @click="cut">降低温度</button>
+    </div>
+    <script>
+        var wearList = ["夹克长裙", "T恤短袖", "棉衣羽绒服"];
+        var app = new Vue({
+            el: '#app',
+            data: {
+                weather: 14,
+                wear: "夹克长裙"
+            },
+            // watch选项是用来监控数据的
+            methods: {
+                add: function () {
+                    this.weather += 5;
+                },
+                cut: function () {
+                    this.weather -= 5;
+                }
+            },
+            watch: {
+                // 监控什么值，写什么方法名，参数分别为新值旧值
+                weather: function (newVal, oldVal) {
+                    console.log(newVal, oldVal)
+                    // if (newVal >= 26) {
+                    //     this.wear = wearList[1];
+                    // } else if (newVal < 26 && newVal >= 0) {
+                    //     this.wear = wearList[0];
+                    // } else {
+                    //     this.wear = wearList[2];
+                    // }
+                }
+            }
+        });
+
+        // 构造器外的监控写法
+        app.$watch('weather',function(newVal, oldVal){
+            if (newVal >= 26) {
+                        this.wear = wearList[1];
+                    } else if (newVal < 26 && newVal >= 0) {
+                        this.wear = wearList[0];
+                    } else {
+                        this.wear = wearList[2];
+                    }
+        })
+    </script>
+</body>
+
+</html>

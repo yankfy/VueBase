@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed计算选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>computed计算选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{newPrice}}</p>
+        <ul>
+            <li v-for="item in reserveNews">
+                {{item.date}} - {{item.title}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var newsList = [
+            {title:"最近的大熊猫越来越猖狂了",
+            date:"2017/9/16"},
+            {title:"上周的大熊猫越来越猖狂了",
+            date:"2017/8/16"},
+            {title:"上上周的大熊猫越来越猖狂了",
+            date:"2017/7/16"},
+            {title:"去年的大熊猫越来越猖狂了",
+            date:"2017/6/16"},
+        ];
+        var app = new Vue({
+            el: '#app',
+            data: {
+                price:100,
+                newsList:newsList
+            },
+            // 不污染原始数据，在输出之前在computed进行改造
+            computed: {
+                newPrice:function(){
+                    return "￥" + this.price + "元";
+                },
+                reserveNews:function(){
+                    return this.newsList.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

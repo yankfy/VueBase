@@ -14,18 +14,21 @@
     <hr>
     <header></header>
     <script>
+        // 1.先拓展
+        // 2、propsData的用法
         var header_a = Vue.extend({
             template: `
-                <p>{{message}}</p>
+                <p>{{message}}-{{a}}</p>
             `,
             data: function () {
                 return {
-                    message： "hello,I  am header",
+                    message: "hello,I  am header"
                 }
-            }
+            },
+            props: ['a']
         })
 
-        new header_a().$mount('header');
+        new header_a({propsData:{a:121}}).$mount('header');
     </script>
 </body>
 

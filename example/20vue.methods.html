@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods方法选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>methods方法选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{a}}</p>
+        <button @click="add(2,$event)">增加</button>
+        <p><btn @click.native="add(4)"></btn></p>
+    </div>
+
+    <button onclick="app.add(3)">构造器外的add</button>
+    <script> 
+        var btn = {
+            template:`
+                <button>btn是组件</button>
+            `
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+               a:1
+            },
+            /**
+               * 1、methods中方法如何传值
+               * 2、event
+               * 3、组件中的事件需要加修饰符.native【调用构造器里的原始方法】
+               * 4、构造器外的事件如何调用
+            */
+            methods: {
+                add:function(num,event){
+                    if(num){
+                        this.a+=num;
+                    }else{
+                        this.a++;
+                    }
+                    console.log(event);
+                }
+            },
+            components: {
+                "btn":btn
+            }
+        })
+    </script>
+</body>
+
+</html>
