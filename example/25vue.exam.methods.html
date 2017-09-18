@@ -13,15 +13,53 @@
     <h1>vue实例方法</h1>
     <hr>
     <div id="app">
-        {{message}}
+
     </div>
+    <button onclick="tick()">更改构造器数据</button>
+    <button onclick="reload()">刷新构造器</button>
+    <button onclick="destroy()">销毁构造器</button>
     <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                message: "hello World!"
+        /** 
+         * 
+         */
+        var pony = Vue.extend({
+            template: `
+                <p>{{message}}</p>
+             `,
+            data: function () {
+                return {
+                    message: "我是一个被拓展的构造器"
+                }
+            },
+            mounted: function () {
+                console.log("mounted被挂载到DOM");
+            },
+            destroyed: function () {
+                console.log("构造器被销毁");
+            },
+            updated: function () {
+                console.log("构造器被更新");
             }
-        })
+        });
+        //  先实例化
+        var vm = new pony();
+        //  挂载到app上
+        vm.$mount("#app");
+        //  刷新构造器
+        function reload() {
+            vm.$forceUpdate();
+        }
+        //  销毁构造器
+        function destroy() {
+            vm.$destroy();
+        }
+        // 扩展的构造器不在构造器内如何更改数据
+        function tick() {
+            vm.message = "更新message";
+            vm.$nextTick(function () {
+                console.log('message更新完后我被调用了');
+            })
+        }
     </script>
 </body>
 

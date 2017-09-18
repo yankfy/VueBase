@@ -13,13 +13,35 @@
     <h1>vue内置组件slot</h1>
     <hr>
     <div id="app">
-        {{message}}
+        <pony>
+            <!-- 1、slot先传递值 -->
+            <span slot="bolgUrl">{{ponyData.bolgUrl}}</span>
+            <span slot="netName">{{ponyData.netName}}Panda</span>
+            <span slot="skill">{{ponyData.skill}}</span>
+        </pony>
     </div>
+    <template id="po">
+        <div>
+            <p>博客地址:<slot name="bolgUrl"></slot></p>
+            <p>网名:<slot name="netName"></slot></p>
+            <p>技术栈:<slot name="skill"></slot></p>
+        </div>
+    </template>
     <script>
+        var pony = {
+            template: "#po",
+        }
         var app = new Vue({
             el: '#app',
             data: {
-                message: "hello World!"
+                ponyData: {
+                    bolgUrl: 'http://51cco.cn',
+                    netName: '破泥',
+                    skill: '小前端'
+                }
+            },
+            components: {
+                "pony": pony
             }
         })
     </script>

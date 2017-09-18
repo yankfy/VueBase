@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>vue实例入门</title>
     <script src="../assets/js/vue.js"></script>
+    <!-- 引入jquery3.2.0 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.js"></script>
 </head>
 
 <body>
@@ -15,13 +17,29 @@
     <div id="app">
         {{message}}
     </div>
+
     <script>
         var app = new Vue({
             el: '#app',
             data: {
                 message: "hello World!"
+            },
+            //在Vue中使用jQuery
+            // Vue生命周期mounted,被挂载到DOM上时使用JQ
+            // 生命周期中还有updated可以使用JQ
+            mounted:function(){
+                // 这里可以使用jquery语句
+                $("#app").append("我是jquery");
+                this.add();
+            },
+            methods: {
+                add:function(){
+                    console.log('调用了构造器内部的add方法');
+                }
             }
         })
+
+        app.add();
     </script>
 </body>
 

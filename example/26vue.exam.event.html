@@ -13,15 +13,53 @@
     <h1>vue实例事件</h1>
     <hr>
     <div id="app">
-        {{message}}
+        {{num}}
+        <button @click="add">增</button>
     </div>
+    <p><button onclick="reduce()">减</button></p>
+    <p><button onclick="once()">只减一次</button></p>
+    <p><button onclick="off()">中止减事件</button></p>
     <script>
+        // 构造器外部增加一个构造器内部的事件
         var app = new Vue({
             el: '#app',
             data: {
-                message: "hello World!"
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                }
             }
         })
+
+        // app外部事件
+        app.$on("reduce", function () {
+            console.log("执行了reduce方法");
+            this.num--;
+        })
+
+        function reduce() {
+            // 如果按钮在作用域外部，可以利用$emit来执行。
+            app.$emit('reduce');
+        }
+
+        // 只执行一次的方法
+        app.$once('reduceOnce', function () {
+            console.log('只执行一次的方法');
+            this.num--;
+        });
+
+        function once() {
+            // 如果按钮在作用域外部，可以利用$emit来执行。
+            app.$emit('reduceOnce');
+        }
+
+        function off(){
+            console.log('中止reduce事件');
+            // 但是once事件还能执行一次
+            app.$off("reduce");
+        }
     </script>
 </body>
 
