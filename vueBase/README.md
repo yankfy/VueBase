@@ -12,7 +12,7 @@
 - [07、v-bind实例](example/07v-bind.html)
 - [08、v-pre&v-cloak&v-once实例](example/08v-others.html)
 
-## Vue2.0全局API实例
+## 02、Vue2.0全局API实例
 > 简单来说就是在构造器外部用Vue提供给我们的API函数来定义新的功能
 - [09、Vue.directive自定义指令](example/09vue.directive.html)
 - [10、Vue.extend构造器的延伸](example/10vue.extend.html)
@@ -24,7 +24,7 @@
 - [16、Vue的Component组件3：父子组件关系](example/16vue.component3.html)
 - [17、Vue的Component组件4：Component的标签](example/17vue.component4.html)
 
-## Vue2.0全局API实例
+## 03、Vue2.0构造器配置选项
 > 简单来说就是在Vue构造器里的配置功能的前缀
 - [18、propsData全局扩展的数据传递](example/18vue.propsData.html)
 - [19、computed计算选项](example/19vue.computed.htmll)
@@ -32,3 +32,8 @@
 - [21、watch监控数据](example/21vue.watch.html)
 - [22、mixins混入选项](example/22vue.mixins.html)
 - [23、extends扩展选项](example/23vue.extends.html)
+## 04、Vue2.0实例和内置组件
+- [24、vue实例入门和实例属性](example/24vue.rumen.html)
+- [25、vue实例方法](example/25vue.exam.methods.html)
+- [26、vue实例事件](example/26vue.exam.event.html)
+- [27、vue内置组件slot](example/27vue.solt.html)
