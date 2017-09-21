@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{msg}}</h1>
-    <router-view></router-view>
+    <h2>{{$route.params.username}}</h2>
+    <h3>{{$route.params.id}}</h3>
   </div>
 </template>
 
@@ -10,7 +11,7 @@
     name: "hi",
     data: () => {
         return {
-            msg:"Hi，I am pony"
+            msg:"Hi，I am 1pony one"
         }
     }
   }

@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <h1>{{msg}}</h1>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -10,7 +9,7 @@
     name: "hi",
     data: () => {
         return {
-            msg:"Hi，I am pony"
+            msg:"Hi，I am 2pony two"
         }
     }
   }
@@ -19,7 +18,7 @@
 
 <style scoped>
   h1 {
-    color: red;
+    color: blue;
   }
 
 </style>
