@@ -1,55 +1,71 @@
+# vuex 中 modules 中 action 如何调用 state
+
+- commit 用于调用 mutation，当前模块和其他模块
+- dispatch 用于调用 action，当前模块和其他模块
+- getters 用于获取当前模块 getter
+- state 用于获取当前模块 state
+- rootState 用于获取其它模块 state
+- rootGetters 用于获取其他模块 getter
+
+# 推荐使用方法路径 store目录下
+
 # state 访问状态对象
+
 ```js
-  import store from "@/vuex/store";
+import store from '@/vuex/store'
 
-  // 第二三种 领用mapState
-  import {mapState} from "vuex";
-  export default {
-    data: () => {
-      return {
-        msg: "Hello Vuex"
-      }
+// 第二三种 领用mapState
+import { mapState } from 'vuex'
+export default {
+  data: () => {
+    return {
+      msg: 'Hello Vuex'
+    }
+  },
+  // TODO: 使用 store 引入后要在这里加 一个 state!!! 坑点
+  store,
+  methods: {
+    add($store) {
+      $store.commit('add')
     },
-    // TODO: 使用 store 引入后要在这里加 一个 state!!! 坑点   
-    store,
-    methods: {
-      add($store) {
-        $store.commit('add');
-      },
-      cut() {
-        $store.commit('cut');
-      }
-    },
-    // TODO: 第一种方法
-    // computed: {
-    //   count() {
-    //     return this.$store.state.count;
-    //   }
-    // }
-    // TODO: 第二种方法
-    // computed: mapState({
-    //   count: state => state.count
-    // })
+    cut() {
+      $store.commit('cut')
+    }
+  },
+  // TODO: 第一种方法
+  // computed: {
+  //   count() {
+  //     return this.$store.state.count;
+  //   }
+  // }
+  // TODO: 第二种方法
+  // computed: mapState({
+  //   count: state => state.count
+  // })
 
-    // TODO: 第三种方法 FIXME: 最为常用的
-    computed:mapState(['count'])
-  }
+  // TODO: 第三种方法 FIXME: 最为常用的
+  computed: mapState(['count'])
+}
 ```
+
 # mutations 同步修改状态对象
+
 ```js
 const mutations = {
   // 加参数传值
   add(state, n) {
-    state.count += n;
+    state.count += n
   },
   reduce(state) {
-    state.count--;
+    state.count--
   }
 }
 // 加参数传值
-$store.commit('add',10);
+$store.commit('add', 10)
 ```
+
 `更改传递方式`
+
 ```js
 // TODO: 第一种方法;
 add($stroe);
@@ -64,29 +80,34 @@ methods:mapMutations(['add','reduce']);
 // 使用时若有参数
 add(params)
 ```
+
 # 放置到服务器
-1.config 文件下的index.js
+
+1.config 文件下的 index.js
+
 ```js
 // 更改绝对路径为相对路径
  assetsPublicPath: './',
 ```
+
 2.运行命令
 
 > npm run build
 
 # getters 运算状态修改
+
 ```js
 // 相当于vue中的computed
 const getters = {
-  count(state){
-    return state.count += 20;
+  count(state) {
+    return (state.count += 20)
   }
 }
 ```
 
 ```js
 computed:{
-    ...mapState(['count']), // ES6 中的拓展运算符 
+    ...mapState(['count']), // ES6 中的拓展运算符
     // TODO: 第一种方法
     // count(){
     //   return this.$store.getters.count;
@@ -97,17 +118,20 @@ computed:{
 ```
 
 # actions 异步修改状态
+
 ```js
 // 异步修改状态
 const actions = {
   // actions 可以调用mutations 中的方法
-  addAction(context){
-    context.commit('add',10);
-    setTimeout(()=>{context.commit('reduce')},5000);
-    console.log("我比reduce先执行");
+  addAction(context) {
+    context.commit('add', 10)
+    setTimeout(() => {
+      context.commit('reduce')
+    }, 5000)
+    console.log('我比reduce先执行')
   },
-  reduceAciton({commit}){
-    commit('reduce');
+  reduceAciton({ commit }) {
+    commit('reduce')
   }
 }
 ```
@@ -118,4 +142,3 @@ methods: {
   ...mapActions(['addAction', 'reduceAciton']),
 }
 ```
-
