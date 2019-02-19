@@ -18,7 +18,7 @@ import PanelComPontents from "./PanelComPontents.vue";
   // 过滤器函数
   filters: {
     activeWaFilter(value: number) {
-      console.log(value);
+      // console.log(value);
       return value >= 5;
     }
   }
