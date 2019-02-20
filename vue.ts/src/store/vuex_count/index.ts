@@ -1,9 +1,8 @@
 // import request from '@/service';
 import { State } from "./interface";
 import { Commit, Dispatch } from "vuex";
-import { ADD, REDUCE, MAX_COUNT, MIN_COUNT } from "@/common/js/const";
-/// <reference path="@/types/session.d.ts"/>
-import { setSession, getSession } from "@/common/js/session";
+import { ADD, REDUCE, MAX_COUNT, MIN_COUNT } from "@/config/js/const";
+import { setSession, getSession } from "@/config/utils/session";
 let countState = getSession("countState");
 
 const state: State = countState || {

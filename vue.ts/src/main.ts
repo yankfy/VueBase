@@ -5,10 +5,10 @@ import router from "./router";
 import store from "./store/index";
 
 // ! mock 数据
-import mock from "./mock/index";
+import mock from "./config/mock/index";
 mock.bootstrap();
 // ! axios 请求
-import axios from "@/utils/ajax";
+import axios from "@/config/utils/axios";
 import vueAxios from "vue-axios";
 
 // ! 引入iview element-ui框架

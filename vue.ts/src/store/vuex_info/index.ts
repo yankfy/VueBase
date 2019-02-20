@@ -1,10 +1,9 @@
 // import request from '@/service';
 import { State } from "./interface";
 import { Commit, Dispatch } from "vuex";
-import { ADD, REDUCE, OPERATE, MAX_COUNT, MIN_COUNT } from "@/common/js/const";
-/// <reference path="@/types/session.d.ts"/>
-import { setSession, getSession } from "@/common/js/session";
-import axios from "@/utils/ajax";
+import axios from "@/config/utils/axios";
+import { setSession, getSession } from "@/config/utils/session";
+import { ADD, REDUCE, OPERATE, MAX_COUNT, MIN_COUNT } from "@/config/js/const";
 let infoState = getSession("infoState");
 
 const state: State = infoState || {
@@ -45,14 +44,14 @@ const actions = {
   },
   // 异步处理axios 请求
   async getMockData(context: { commit: Commit; rootState: any }, params: any) {
-    console.log(`get vuex`)
+    console.log(`get vuex`);
     const { data } = await axios.get("/api/mockdata", { params });
     context.commit("SETMOCK", data.result);
   },
   // 异步处理axios 请求
   async postMockData(context: { commit: Commit; rootState: any }, params: any) {
-    console.log(`post vuex`)
-    const { data } = await axios.post("/api/mockdata", params );
+    console.log(`post vuex`);
+    const { data } = await axios.post("/api/mockdata", params);
     context.commit("SETMOCK", data.result);
   }
 };

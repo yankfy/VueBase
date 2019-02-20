@@ -11,7 +11,7 @@ s-bgcol($color, $opacity = false)
   background-color $color
 
   if ($opacity)
-    s-opacity($opacity)
+    background-color rgba($color, $opacity)
 
 s-font($size, $color = '#333', $weight = false, $font-family = $Font-family)
   font-size $size // 移动端: calculateRem($size);
@@ -64,13 +64,16 @@ s-border($size = false, $color = transparent, $style = solid, $radius = false, $
     if ($radius)
       s-radius($radius)
 
-s-border-color( $tColor = transparent, $rColor = transparent, $bColor = transparent, $lColor = transparent)
+s-border-color($tColor = transparent, $rColor = transparent, $bColor = transparent, $lColor = transparent)
   if ($tColor)
     border-top-color $tColor
+
   if ($rColor)
     border-right-color $rColor
+
   if ($bColor)
     border-bottom-color $bColor
+
   if ($lColor)
     border-left-color $lColor
 

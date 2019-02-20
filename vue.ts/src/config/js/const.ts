@@ -1,12 +1,15 @@
-// 项目所有的常量变量
+// ! 项目所有的常量变量
 
-// api
-const CODE: string = "0000";
-// store
-const ADD: string = "ADD";
-const REDUCE: string = "REDUCE";
-const OPERATE: string = "OPERATE";
-const MIN_COUNT: number = 0;
-const MAX_COUNT: number = 20;
+// API前缀常量
 
-export { CODE, ADD, REDUCE, OPERATE, MAX_COUNT, MIN_COUNT };
+// Axios 返回CODE
+export const CODE: string = "0000";
+
+// vuex mutations 函数名
+export const ADD: string = "ADD";
+export const REDUCE: string = "REDUCE";
+export const OPERATE: string = "OPERATE";
+
+// 其他常量
+export const MIN_COUNT: number = 0;
+export const MAX_COUNT: number = 20;

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue, Emit } from "vue-property-decorator";
-import Panel from "@/components/Panel.vue"; // @ is an alias to /src
+import Panel from "@/views/components/Panel.vue"; // @ is an alias to /src
 import { namespace } from "vuex-class";
 const countModule = namespace("count");
 const infoModule = namespace("info");

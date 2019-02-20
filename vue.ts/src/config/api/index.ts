@@ -1,4 +1,4 @@
-import axios from "@/utils/ajax";
+import axios from "@/config/utils/axios";
 
 export default {
   getMockData: (params: any) => {

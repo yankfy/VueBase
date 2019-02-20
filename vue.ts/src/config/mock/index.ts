@@ -1,6 +1,6 @@
-import axios from "@/utils/ajax";
+import axios from "@/config/utils/axios";
 import MockAdapter from "axios-mock-adapter";
-import { mockData } from "./data/mockData";
+import { mockData } from "./data/mock-data";
 export default {
   /**
    * mock bootstrap

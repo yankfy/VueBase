@@ -19,7 +19,7 @@ import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
 import PanelComPontents from "./PanelComPontents.vue";
 
 // ! axios mock 请求
-import api from "@/api/api";
+import api from "@/config/api/index";
 
 // ! vuex 引入api
 import { namespace } from "vuex-class";

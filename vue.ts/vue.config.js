@@ -32,7 +32,7 @@ module.exports = {
     extract: isProduction, //打包成一个css,
     loaderOptions: {
       stylus: {
-        import: path.resolve(__dirname, './src/common/stylus/common.styl')
+        import: path.resolve(__dirname, './src/config/stylus/index.styl')
       },
     }
   },

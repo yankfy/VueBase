@@ -8,9 +8,9 @@ axios.interceptors.request.use(config => {
   // const baseUrl = process.env.NODE_ENV === 'production' ? process.env.VUE_APP_API_URL : '';
   const baseUrl = '';
   config.url = `${baseUrl}${config.url}`;
-  if (!config.url.includes('api/nextTask')) {
-    // showFullScreenLoading();
-  }
+  // if (!config.url.includes('api/nextTask')) {
+  //   // showFullScreenLoading();
+  // }
   return config;
 },
   error => {
@@ -20,9 +20,9 @@ axios.interceptors.request.use(config => {
 // 返回状态判断(添加响应拦截器)
 axios.interceptors.response.use(
   (res: any) => {
-    if (!res.config.url.includes('api/nextTask')) {
-    //   tryHideFullScreenLoading();
-    }
+    // if (!res.config.url.includes('api/nextTask')) {
+    // //   tryHideFullScreenLoading();
+    // }
     return res;
   },
   (error: any) => {
