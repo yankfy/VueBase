@@ -6,6 +6,11 @@
     div {{tests}}
     button(@click='changeInfo(active)',:class="active?'active changeBtn':'inactive changeBtn'") {{msgs}}
     PanelComPontents(panel="panel父组件传入的值")
+    hr
+    h3 使用vuex获取接口数据
+    div(v-for="(items,index) in mockDataView" :key="index")
+      button(v-for="item in items")
+        span {{item.title}}
 </template>
 
 <script lang="ts">
@@ -15,6 +20,10 @@ import PanelComPontents from "./PanelComPontents.vue";
 
 // ! axios mock 请求
 import api from "@/api/api";
+
+// ! vuex 引入api
+import { namespace } from "vuex-class";
+const infoModule = namespace("info");
 
 // 组件引用，mixins，filters 等放在 @Component 里面
 @Component({
@@ -28,10 +37,15 @@ import api from "@/api/api";
   }
 })
 export default class Panel extends Vue {
+  // vuex axios
+  @infoModule.Action("getMockData") getMockData: any;
+  @infoModule.Action("postMockData") postMockData: any;
+  @infoModule.Getter("mockData") mockData: any;
   // data
   msgs: string = "按钮";
   active: boolean = true;
   activeWa: number = 1;
+  mockDataView: Object={};
   // prop 父组件向子组件传值方式
   @Prop() private mymsg!: string;
   @Prop() private msg!: string;
@@ -46,12 +60,23 @@ export default class Panel extends Vue {
     this.activeWa++;
   }
   // created 生命周期钩子
-  public created() {
-    // ! axios mock请求
-    api.getMockData({ id: 1 }).then((res: any) => {
-      const { code, message, result } = res;
-      console.log(res);
-    });
+  public async created() {
+    // ! axios getmock请求
+    // api.getMockData({ id: 1 }).then((res: any) => {
+    //   const { code, message, result } = res;
+    //   console.log(res);
+    // });
+    // ! axios postmock请求
+    // api.postMockData({ id: 1 }).then((res: any) => {
+    //   const { code, message, result } = res;
+    //   console.log(res);
+    // });
+    // ! 通过 vuex get请求数据
+    // await this.getMockData({ id: 1 });
+    // this.mockDataView = this.mockData;
+    // ! 通过 vuex post请求数据
+    await this.postMockData({ id: 1 });
+    this.mockDataView = this.mockData;
   }
   // mounted 生命周期钩子
   public mounted() {}

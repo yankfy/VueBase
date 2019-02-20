@@ -17,15 +17,16 @@ export default {
     mock.onGet("/error").reply(500, {
       msg: "failure"
     });
-
+    //  .onGet("/api/mockdata") 没有参数时
+    // 有确定参数时 这里只做筛选
     mock
-      //   .onGet("/api/mockdata") 没有参数时
-      .onGet("/api/mockdata", { params: { id: 1 } }) // 有确定参数时 这里只做筛选
+      .onGet("/api/mockdata", { params: { id: 1 } })
       .reply(200, { code: 0, message: "success", result: mockData });
-    // mock.onPost('/RpaOcr/kp/api/ocrReview').reply(200, {
-    //     code: 0,
-    //     message: '',
-    //     result: {}
-    // });
+
+    mock.onPost("/api/mockdata").reply(200, {
+      code: 0,
+      message: "success",
+      result: mockData
+    });
   }
 };
