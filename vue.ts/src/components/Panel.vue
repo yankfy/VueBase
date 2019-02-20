@@ -12,6 +12,10 @@
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
 // 组件引入智能在上条语句的后面
 import PanelComPontents from "./PanelComPontents.vue";
+
+// ! axios mock 请求
+import api from "@/api/api";
+
 // 组件引用，mixins，filters 等放在 @Component 里面
 @Component({
   components: { PanelComPontents },
@@ -42,7 +46,13 @@ export default class Panel extends Vue {
     this.activeWa++;
   }
   // created 生命周期钩子
-  public created() {}
+  public created() {
+    // ! axios mock请求
+    api.getMockData({ id: 1 }).then((res: any) => {
+      const { code, message, result } = res;
+      console.log(res);
+    });
+  }
   // mounted 生命周期钩子
   public mounted() {}
   // 计算属性【函数里禁止使用alert】
