@@ -9,7 +9,7 @@
     hr
     h3 使用vuex获取接口数据
     div(v-for="(items,index) in mockDataView" :key="index")
-      button(v-for="item in items")
+      Button(v-for="(item,ins) in items" :key="ins")
         span {{item.title}}
 </template>
 

@@ -1,0 +1,233 @@
+s-bgpos($x, $y)
+  background-position $x $y
+
+s-bgimg($url, $x = 0, $y = 0, $size = cover, $repeat = no-repeat)
+  background-image url($url)
+  s-bgpos($x, $y)
+  background-size $size
+  background-repeat $repeat
+
+s-bgcol($color, $opacity = false)
+  background-color $color
+
+  if ($opacity)
+    s-opacity($opacity)
+
+s-font($size, $color = '#333', $weight = false, $font-family = $Font-family)
+  font-size $size // 移动端: calculateRem($size);
+  color $color
+  font-family $font-family
+
+  if ($weight)
+    font-weight $weight
+
+s-sfont()
+  transform-origin center
+  transform scale(0.9)
+
+s-line()
+  word-wrap break-word
+  word-break break-all
+  white-space pre-wrap !important
+
+s-wh($w, $h = $w, $l = false)
+  width $w
+  height $h
+
+  if ($l)
+    line-height $h
+
+s-padding($way = false, args...)
+  if ($way)
+    padding-{$way} args
+  else
+    padding args
+
+s-margin($way = false, args...)
+  if ($way)
+    margin-{$way} args
+  else
+    margin args
+
+s-radius($r)
+  border-radius $r
+
+s-border($size = false, $color = transparent, $style = solid, $radius = false, $way = false)
+  if (!$size)
+    border none
+  else
+    if ($way)
+      border-{$way} $size $style $color
+    else
+      border $size $style $color
+
+    if ($radius)
+      s-radius($radius)
+
+s-border-color( $tColor = transparent, $rColor = transparent, $bColor = transparent, $lColor = transparent)
+  if ($tColor)
+    border-top-color $tColor
+  if ($rColor)
+    border-right-color $rColor
+  if ($bColor)
+    border-bottom-color $bColor
+  if ($lColor)
+    border-left-color $lColor
+
+s-outline($size = false, $color = transparent, $style = solid, $radius = false, $way = false)
+  if (!$size)
+    outline none
+  else
+    if ($way)
+      outline-{$way} $size $style $color
+    else
+      outline $size $style $color
+
+    if ($radius)
+      s-radius($radius)
+
+s-underline()
+  text-decoration underline
+
+s-overflow($ox = false, $oy = false)
+  if (!$ox && !$oy)
+    overflow hidden
+  else
+    if ($ox)
+      overflow-x $ox
+
+    if ($oy)
+      overflow-y $oy
+
+s-flex($h = center, $v = center, $column = false)
+  display flex
+  justify-content $h
+  align-items $v
+
+  if ($column)
+    flex-direction $column
+
+s-flexself($v, $h = false)
+  display flex
+  align-self $v
+
+  if ($h)
+    justify-self $h
+
+s-offset($t, $r, $b, $l)
+  if ($t != auto)
+    top $t
+
+  if ($l != auto)
+    left $l
+
+  if ($r != auto)
+    right $r
+
+  if ($b != auto)
+    bottom $b
+
+s-zindex($zindex)
+  z-index $zindex
+
+s-pos($a = absolute, $t = auto, $r = auto, $b = auto, $l = auto, $zindex = false, $center = false)
+  position $a
+  s-offset($t, $r, $b, $l)
+
+  if ($zindex)
+    s-zindex($zindex)
+
+  if ($center)
+    transform translate(-50%, -50%)
+
+s-clearfix()
+  &:before, &:after
+    content ''
+    display table
+
+  &:after
+    clear both
+
+s-shadow($top, $left, $blur, $color, $inset = false)
+  if ($inset)
+    box-shadow $top $left $blur $color $inset
+  else
+    box-shadow $top $left $blur $color
+
+s-eone()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+s-eline($line)
+  display -webkit-box
+  -webkit-box-orient vertical
+  -webkit-line-clamp $line // 行数
+  overflow hidden
+
+s-content($content = false)
+  display inline-block
+  content ''
+
+s-arrow($r, $color, $way = top)
+  border-width $r $r $r $r
+  border-style solid
+
+  if ($way == top)
+    border-color transparent transparent $color transparent
+  else if ($way == bottom)
+    border-color $color transparent transparent transparent
+  else if ($way == left)
+    border-color transparent transparent transparent $color
+  else if ($way == right)
+    border-color transparent $color transparent transparent
+
+// ! 移动端
+// * rem优雅降级
+s-calrem($size = $Font16)
+  unit(($size / $Font16), 'rem')
+
+// * 1px边框
+s-border1px(color)
+  position relative
+
+  &:after
+    display block
+    position absolute
+    left 0
+    bottom 0
+    border-top 1px solid color
+    content ''
+    width 100%
+
+// !IE
+s-opacity($opacity)
+  opacity $opacity
+
+// 定义滚动条样式
+s-scrollBar($width = 10px, $height = 10px, $outColor = $bgColor, $innerColor = $bgGrey, $radius = 5px, $shadow = null, args...)
+  /* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
+  &::-webkit-scrollbar
+    s-wh($width, $height)
+    s-bgcol($outColor)
+
+  /* 定义滚动条轨道 内阴影+圆角 */
+  &::-webkit-scrollbar-track
+    if ($shadow != null)
+      s-shadow(args)
+
+    if ($radius != null)
+      s-radius($radius)
+
+    s-bgcol($outColor)
+
+  /* 定义滑块 内阴影+圆角 */
+  &::-webkit-scrollbar-thumb
+    if ($shadow != null)
+      s-shadow(args)
+
+    if ($radius != null)
+      s-radius($radius)
+
+    s-bgcol($innerColor)
+    s-border(1px, $innerColor)

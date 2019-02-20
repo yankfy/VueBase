@@ -1,0 +1,61 @@
+
+// begin change tab style
+/* reset iview style */
+.ivu-tabs-nav-container
+  border-bottom 2px solid $kpmgBlueLight
+
+.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab
+  margin 0
+  margin-right 4px
+  height 31px
+  padding 5px 16px 4px
+  border 0px solid #dddee1
+  border-bottom 0
+  border-radius 4px 4px 0 0
+  transition all 0.3s ease-in-out
+  background #fff
+  font-size 16px
+
+.ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab-active
+  height 32px
+  padding-bottom 5px
+  background $kpmgBlueLight
+  transform translateZ(0)
+  color #fff
+
+// end change tab style
+
+// button type="primary" change background-color and border-color to kpmgBlue
+.ivu-btn-primary
+  color #fff
+  background-color $kpmgBlue
+  border-color $kpmgBlue
+
+// 由于ive-btn-primary生成的样式
+// .ivu-btn-primary[data-v-6c4e538b]覆盖掉了iview中.ivu-btn-primary[disabled]的值
+// 这里将.ivu-btn-primary[disabled]也重写一下，样式和iview中定义的一致
+.ivu-btn-primary[disabled]
+  color #bbbec4
+  background-color #f7f7f7
+  border-color #dddee1
+
+// change table cell's padding to 10px, this is UI rule
+.ivu-table-cell
+  padding-left 10px
+  padding-right 10px
+
+.ivu-input, .ivu-select-selection
+  border-color #bcbcbc
+
+.ivu-btn-text:focus
+  box-shadow 0px 0px 0px 0px rgba(45, 140, 240, 0.2) !important
+
+// input框中的删除按钮手型显示
+.ivu-input-icon
+  cursor pointer
+
+.ivu-table-header table
+  width 100% !important
+
+.ivu-table-body table
+  width 100% !important

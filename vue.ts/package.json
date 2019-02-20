@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "axios": "^0.18.0",
     "d3": "^3.5.17",
     "element-ui": "^2.4.11",
