@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import About from "./views/pages/About.vue";
+import About from "./pages/about/About.vue";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -20,7 +20,19 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/pages/Viser.vue")
+        import(/* webpackChunkName: "about" */ "./pages/viser/Viser.vue")
+    },
+    {
+      path: "/count",
+      name: "count",
+      component: () => import("./pages/count/Count.vue"),
+      children: [
+        {
+          path: "info",
+          name: "info",
+          component: () => import("./pages/info/Info.vue")
+        }
+      ]
     }
   ]
 });

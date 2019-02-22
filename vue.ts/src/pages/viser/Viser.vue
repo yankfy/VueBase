@@ -1,10 +1,11 @@
 <template lang="pug">
-	v-chart(:forceFit="true",:height="height",:data="data",:scale="scale")
-		v-tooltip(:showTitle="false",dataKey="item*percent")
-		v-axis
-		v-legend(dataKey="item")
-		v-pie(position="percent",color="item",:v-style="pieStyle",:label="labelConfig")
-		v-coord(type="theta",:radius="0.75",:innerRadius="0.6")
+  div.viser
+    v-chart(:forceFit="true",:height="height",:width="width",:data="data",:scale="scale",renderer='svg')
+      v-tooltip(:showTitle="false",dataKey="item*percent")
+      v-axis
+      v-legend(dataKey="item")
+      v-pie(position="percent",color="item",:v-style="pieStyle",:label="labelConfig")
+      v-coord(type="theta",:radius="0.75",:innerRadius="0.6")
 </template>
 
 <script lang="ts">
@@ -42,6 +43,7 @@ export default class Viser extends Vue {
   private data: Object = data;
   private scale: Array<Object> = scale;
   private height: number = 400;
+  private width: number = 400;
   private pieStyle: Object = {
     stroke: "#fff",
     lineWidth: 1
@@ -56,3 +58,9 @@ export default class Viser extends Vue {
   ];
 }
 </script>
+
+<style lang="stylus" scoped>
+.viser
+  s-wh(500px, 400px)
+  margin 0 auto
+</style>

@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 // ! 在ts中引入文件必须指定到相应的文件，index不可以省略，不然会找不到文件
-import store from "./store/index";
+import store from "./store";
 
 // ! mock 数据
 import mock from "./config/mock/index";
@@ -27,6 +27,11 @@ Vue.component("Notification", Notification);
 // ! 引入viser Vue
 import Viser from "viser-vue";
 Vue.use(Viser);
+
+// ! 引入Element
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 

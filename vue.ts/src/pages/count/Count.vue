@@ -1,28 +1,19 @@
 <template lang="pug">
-  .home
-    //- 子组件向父组件传值
-    button {{btnInfo}}
-    //- 父组件向子组件传值
-    Panel(msg="传递props信息",mymsg="父组件向子组件传递信息" @changeInfo='changeInfo')
-    hr
-    h3 vuex vue-cli3 使用State
-    div {{count}}
-    button(@click="addBtn") {{operateAdd}}
-    button(@click="reduceBtn") {{operateReduce}}
+	div
+		.count vue-cli3 使用 Vuex State
+			.count-number {{count}}
+		Button(@click="addBtn") {{operateAdd}}
+		Button(@click="reduceBtn") {{operateReduce}}
+		router-view
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from "vue-property-decorator";
-import Panel from "@/views/components/Panel.vue"; // @ is an alias to /src
+import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 const countModule = namespace("count");
 const infoModule = namespace("info");
 
-@Component({
-  components: {
-    Panel
-  }
-})
+@Component({})
 export default class Home extends Vue {
   // vuex 状态和方法引入
   @countModule.Getter("count") count: any;
@@ -33,10 +24,6 @@ export default class Home extends Vue {
   @infoModule.Getter("operateReduce") operateReduce: any;
   @infoModule.Action("operateRes") operateRes: any;
 
-  public btnInfo: string = "父按钮信息";
-  public changeInfo(active: boolean) {
-    this.btnInfo = `子组件更改${active}`;
-  }
   public async addBtn() {
     await this.addAction(5);
     this.operateRes();
@@ -47,3 +34,11 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.count
+  margin 10px 0
+  s-font(18px, $kpmgBlack)
+  &-number
+    s-font(16px, $kpmgBlueDark, 700)
+</style>

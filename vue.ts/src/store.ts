@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import count from "./vuex_count/index";
-import info from "./vuex_info/index";
+import count from "./pages/count/store/index";
+import info from "./pages/info/store/index";
 
 Vue.use(Vuex);
 
